@@ -5,7 +5,7 @@
 ## Login   <cedric@epitech.net>
 ## 
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Sun Dec 18 21:49:32 2016 Cédric Thomas
+## Last update Wed Dec 21 22:20:37 2016 Cédric Thomas
 ##
 
 SRC	=	main.c			\
@@ -22,6 +22,7 @@ SRC	=	main.c			\
 		draw/draw_circle.c	\
 		disp/disp.c		\
 		disp/disp_minimap.c	\
+		disp/disp_game.c	\
 		parse/parse.c		\
 		parse/parse_wolf.c	\
 
@@ -35,7 +36,7 @@ LIB	=	-lmy -lc_graph_prog -lm
 
 INCLUDE	=	-I./include/
 
-CFLAGS	+=	 $(INCLUDE) -g	-W -Wall -Wextra
+CFLAGS	+=	 $(INCLUDE) -O3 -g -W -Wall -Wextra
 
 
 all: $(NAME)

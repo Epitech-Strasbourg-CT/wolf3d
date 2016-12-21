@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:30:30 2016 Cédric Thomas
-** Last update Tue Dec 20 21:52:23 2016 Cédric Thomas
+** Last update Wed Dec 21 22:08:13 2016 Cédric Thomas
 */
 #ifndef WOLF_H_
 # define WOLF_H_
@@ -13,16 +13,16 @@
 #include <SFML/Graphics.h>
 
 # define CASELEN 64.0
-# define FOV 2
-# define SCALE 2.0
-# define WIDTH 1920
-# define HEIGHT 1080
+# define FOV 60.0
+# define SCALE 3.0
+# define WIDTH 1920.0
+# define HEIGHT 1080.0
 
 typedef struct		s_player
 {
   float			angle;
   sfVector2f		pos;
-  int			fov;
+  float			fov;
   float			distu;
   float			distd;
   float			distl;
@@ -51,6 +51,17 @@ typedef struct          s_map
 }                       t_map;
 
 /*
+**0 if hori 1 if verti
+*/
+
+typedef struct		s_cast
+{
+  float			dist;
+  int			impact;
+}			t_cast;
+
+
+/*
 **misc.c
 */
 void	add_vec(sfVector2f *pos, float len, float alpha);
@@ -70,6 +81,12 @@ int	play(t_map *m, t_player *p);
 void	draw_minimap(t_map *m,
 		     t_player *p,
 		     t_pixelbuff *buff);
+/*
+**disp_game.c
+*/
+void	draw_game(t_map *m,
+		  t_player *p,
+		  t_pixelbuff *buff);
 
 /*
 **WOLF_PARSE
@@ -92,7 +109,7 @@ t_map	parse_wolf(char *path);
 /*
 **WOLF_DRAW
 */
-int	draw_square(sfVector2i pos, sfVector2i size,
+int	draw_square(sfVector2i pos, sfVector2f size,
 		    t_pixelbuff *buff, sfColor color);
 int	draw_circle(sfVector2i pos, int rayon,
 		    t_pixelbuff *buff, sfColor color);
@@ -114,6 +131,7 @@ void		clean_buff(t_pixelbuff **buffer);
 sfVector2f	myvector2f(double x, double y);
 sfVector3f	myvector3f(double x, double y, double z);
 sfVector2i	myvector2i(int x, int y);
+sfColor		mycolor(int a, int r, int g, int b);
 
 /*
 **window.c
@@ -136,6 +154,7 @@ float		raycast(sfVector2f pos,
 			float direction,
 			int **map,
 			sfVector2i mapSize);
+t_cast		adv_raycast(t_player player, t_map map, float angle);
 sfVector2f	move_forward(sfVector2f pos,
 			     float direction,
 			     float distance);

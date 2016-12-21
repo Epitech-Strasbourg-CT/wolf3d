@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sun Dec 18 20:02:03 2016 Cédric Thomas
-** Last update Sun Dec 18 20:20:11 2016 Cédric Thomas
+** Last update Wed Dec 21 15:28:26 2016 Cédric Thomas
 */
 #include <SFML/Graphics.h>
 #include <math.h>
@@ -38,4 +38,5 @@ int     draw_circle(sfVector2i pos, int rayon,
 	}
       i += 1;
     }
+  return (1);
 }

@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sun Dec 18 19:38:08 2016 Cédric Thomas
-** Last update Tue Dec 20 20:58:03 2016 Cédric Thomas
+** Last update Wed Dec 21 19:38:07 2016 Cédric Thomas
 */
 #include <SFML/Graphics.h>
 #include <math.h>
@@ -22,7 +22,7 @@ void		draw_view(t_map *m, t_player *p, t_pixelbuff *buff, float side)
   i = p->angle - p->fov / 2;
   while (i < p->angle + p->fov / 2)
     {
-      dist = raycast(p->pos, i, m->map, m->size);
+      dist = raycast(p->pos, i, m->map, m->size)  / SCALE;
       view = myvector2i(player.x + cosd(i) * dist + 1,
 			player.y - sind(i) * dist + 1);
       my_draw_line(buff, player, view, sfGreen);
@@ -46,8 +46,11 @@ void		draw_minimap(t_map *m, t_player *p, t_pixelbuff *buff)
   int		i;
   int		j;
 
-  sq = CASELEN;
+  sq = CASELEN / SCALE;
   i = 0;
+  draw_square(myvector2i(0, 0),
+	      myvector2f(sq * m->size.x, sq * m->size.y),
+	      buff, mycolor(255, 0, 0, 0));
   while (i < m->size.y)
     {
       j = 0;
@@ -57,7 +60,7 @@ void		draw_minimap(t_map *m, t_player *p, t_pixelbuff *buff)
 	    color = sfWhite;
 	  else
 	    color = sfBlue;
-	  draw_square(myvector2i(j * sq, i * sq), myvector2i(sq, sq), buff, color);
+	  draw_square(myvector2i(j * sq, i * sq), myvector2f(sq, sq), buff, color);
 	  j += 1;
 	}
       i += 1;

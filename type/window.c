@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Fri Nov 18 20:59:55 2016 Cédric Thomas
-** Last update Sun Dec 18 17:03:07 2016 Cédric Thomas
+** Last update Wed Dec 21 15:36:48 2016 Cédric Thomas
 */
 #include <SFML/Graphics.h>
 #include "wolf.h"

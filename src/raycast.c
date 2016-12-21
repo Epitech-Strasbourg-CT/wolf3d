@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:58:00 2016 Cédric Thomas
-** Last update Tue Dec 20 21:49:48 2016 Cédric Thomas
+** Last update Wed Dec 21 21:54:48 2016 Cédric Thomas
 */
 #include <SFML/Graphics.h>
 #include <math.h>
@@ -76,17 +76,44 @@ float		raycast(sfVector2f pos, float direction,
   pos.x *= CASELEN;
   pos.y *= CASELEN;
   lenhori = get_hori(pos, map, size, direction);
-   lenvert = get_vert(pos, map, size, direction);
-   if (lenvert < 0 && lenhori)
+  lenvert = get_vert(pos, map, size, direction);
+  if (lenvert < 0 && lenhori)
     return (lenhori);
   else if (lenhori < 0 && lenvert)
     return (lenvert);
   if (lenvert <= lenhori)
     return (lenvert);
   else if (lenhori <= lenvert)
-     return (lenhori);
-   else
+    return (lenhori);
+  else
     return (0);
 }
 
+t_cast		adv_raycast(t_player p, t_map m, float angle)
+{
+  t_cast	my_cast;
+  float		lenhori;
+  float		lenvert;
 
+  p.pos.x *= CASELEN;
+  p.pos.y *= CASELEN;
+  lenhori = get_hori(p.pos, m.map, m.size, angle);
+  lenvert = get_vert(p.pos, m.map, m.size, angle);
+  if (lenvert <= lenhori)
+    my_cast.dist = lenvert;
+  else if (lenhori <= lenvert)
+    my_cast.dist = lenhori;
+  else
+    my_cast.dist = 0;
+  if (lenvert < 0 && lenhori)
+    my_cast.dist = lenhori;
+  else if (lenhori < 0 && lenvert)
+    my_cast.dist = lenvert;
+  if (my_cast.dist == lenhori)
+    my_cast.impact = 0;
+  else if (my_cast.dist == lenvert)
+    my_cast.impact = 1;
+  else if (my_cast.dist == 0)
+    my_cast.impact = 3;
+  return (my_cast);
+}
