@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:30:30 2016 Cédric Thomas
-** Last update Wed Dec 21 22:08:13 2016 Cédric Thomas
+** Last update Thu Dec 22 16:41:54 2016 Cédric Thomas
 */
 #ifndef WOLF_H_
 # define WOLF_H_

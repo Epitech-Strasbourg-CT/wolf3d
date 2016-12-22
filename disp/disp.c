@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sun Dec 18 18:21:41 2016 Cédric Thomas
-** Last update Wed Dec 21 22:25:01 2016 Cédric Thomas
+** Last update Thu Dec 22 16:47:18 2016 Cédric Thomas
 */
 #include <stdlib.h>
 #include <SFML/Graphics.h>
@@ -18,13 +18,13 @@ static int      checkevent(sfRenderWindow *window,
   if (sfKeyboard_isKeyPressed(sfKeyEscape))
     sfRenderWindow_close(window);
   if (sfKeyboard_isKeyPressed(sfKeyZ) && p->distu > 10.0 * 100.0 / CASELEN)
-    add_vec(&(p->pos), 10.0 / CASELEN, p->angle);
+    add_vec(&(p->pos), 0.3 / 100 * CASELEN, p->angle);
   if (sfKeyboard_isKeyPressed(sfKeyS) && p->distd > 10.0 * 100.0 / CASELEN)
-    add_vec(&(p->pos), 10.0 / CASELEN, p->angle + 180);
+    add_vec(&(p->pos), 0.3 / 100 * CASELEN, p->angle + 180);
   if (sfKeyboard_isKeyPressed(sfKeyQ) && p->distl > 10.0 * 100.0 / CASELEN)
-    add_vec(&(p->pos), 10.0 / CASELEN, p->angle + 90);
+    add_vec(&(p->pos), 0.3 / 100 * CASELEN, p->angle + 90);
   if (sfKeyboard_isKeyPressed(sfKeyD) && p->distr > 10.0 * 100.0 / CASELEN)
-    add_vec(&(p->pos), 10.0 / CASELEN, p->angle - 90);
+    add_vec(&(p->pos), 0.3 / 100 * CASELEN, p->angle - 90);
   if (sfKeyboard_isKeyPressed(sfKeyA))
     p->angle += 5;
   if (sfKeyboard_isKeyPressed(sfKeyE))

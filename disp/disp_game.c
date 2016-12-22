@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 20 22:22:54 2016 Cédric Thomas
-** Last update Wed Dec 21 22:24:13 2016 Cédric Thomas
+** Last update Thu Dec 22 16:00:33 2016 Cédric Thomas
 */
 #include <math.h>
 #include <SFML/Graphics.h>
@@ -50,26 +50,30 @@ void	draw_background(t_pixelbuff *buff)
 
 void		draw_wall(t_map *m, t_player *p, t_pixelbuff *buff)
 {
+  int		last;
   int		k;
   t_cast	info;
   float		distfov;
   sfColor	color;
 
-  k = 0;
+  k = -1;
+  last = 0;
   distfov = (float)(p->fov / WIDTH);
-  while (k <= WIDTH)
+  while (++k <= WIDTH)
     {
       color = mycolor(255, 235, 149, 50);
       info = adv_raycast(*p, *m, (k * distfov) - p->fov / 2 + p->angle);
-      info.dist /= CASELEN;
+      info.dist *= 1 / CASELEN * cosd((-1 * p->fov / 2) + k * distfov);
       if (info.impact == 1)
-      	color.a -= 20;
-      info.dist *= cosd((-1 * p->fov / 2) + k * distfov);
+	color.a = 235;
+      if (last != info.impact)
+	color.a = 0;
+      last = info.impact;
       info.dist = (!info.dist ? HEIGHT : HEIGHT / info.dist);
       draw_col(buff, myvector2i(WIDTH - k,
 				HEIGHT / 2 - info.dist / 2), info.dist, color);
-      my_put_pixel(buff, WIDTH - k, HEIGHT / 2 - info.dist / 2, sfBlack);
-      k += 1;
+      my_put_pixel(buff, WIDTH - k,
+		   HEIGHT / 2 - info.dist / 2, mycolor(0, 0, 0, 0));
     }
 }
 
