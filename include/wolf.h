@@ -5,16 +5,16 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:30:30 2016 Cédric Thomas
-** Last update Thu Dec 22 16:41:54 2016 Cédric Thomas
+** Last update Fri Dec 23 09:33:54 2016 Cédric Thomas
 */
 #ifndef WOLF_H_
 # define WOLF_H_
 
 #include <SFML/Graphics.h>
 
-# define CASELEN 64.0
+# define CASELEN 1.0
 # define FOV 60.0
-# define SCALE 3.0
+# define SCALE 0.1
 # define WIDTH 1920.0
 # define HEIGHT 1080.0
 
