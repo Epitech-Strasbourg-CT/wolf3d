@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:33:56 2016 Cédric Thomas
-** Last update Fri Dec 23 09:49:29 2016 Cédric Thomas
+** Last update Thu Jan  5 14:20:08 2017 
 */
 #include <math.h>
 #include <SFML/Graphics.h>
@@ -18,6 +18,6 @@ sfVector2f	move_forward(sfVector2f pos, float direction, float distance)
 
   angle = direction * M_PI / 180;
   next_pos.x = pos .x + distance * cos(angle);
-  next_pos.y=  pos .y + distance * sin(angle);
+  next_pos.y = pos .y + distance * sin(angle);
   return (next_pos);
 }

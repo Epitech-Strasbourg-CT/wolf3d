@@ -5,16 +5,16 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:30:30 2016 Cédric Thomas
-** Last update Fri Dec 23 09:33:54 2016 Cédric Thomas
+** Last update Mon Jan  2 17:13:10 2017 Cédric Thomas
 */
 #ifndef WOLF_H_
 # define WOLF_H_
 
-#include <SFML/Graphics.h>
+# include <SFML/Graphics.h>
 
 # define CASELEN 1.0
 # define FOV 60.0
-# define SCALE 0.1
+# define SCALE 0.07
 # define WIDTH 1920.0
 # define HEIGHT 1080.0
 
@@ -48,6 +48,7 @@ typedef struct          s_map
 {
   sfVector2i		size;
   int			**map;
+  int			color;
 }                       t_map;
 
 /*
@@ -56,7 +57,13 @@ typedef struct          s_map
 
 typedef struct		s_cast
 {
+  float			height;
+  sfVector2i		mcase;
   float			dist;
+  float			disth;
+  sfVector2i		mcaseh;
+  float			distv;
+  sfVector2i		mcasev;
   int			impact;
 }			t_cast;
 
@@ -84,7 +91,17 @@ void	draw_minimap(t_map *m,
 /*
 **disp_game.c
 */
+void	draw_col(t_pixelbuff *buff,
+		 sfVector2i point,
+		 int len,
+		 sfColor color);
 void	draw_game(t_map *m,
+		  t_player *p,
+		  t_pixelbuff *buff);
+/*
+**disp_game.c
+*/
+void	draw_wall(t_map *m,
 		  t_player *p,
 		  t_pixelbuff *buff);
 

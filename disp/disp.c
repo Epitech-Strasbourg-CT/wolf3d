@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sun Dec 18 18:21:41 2016 Cédric Thomas
-** Last update Fri Dec 23 09:35:28 2016 Cédric Thomas
+** Last update Mon Jan  2 14:38:21 2017 Cédric Thomas
 */
 #include <stdlib.h>
 #include <SFML/Graphics.h>
@@ -13,8 +13,10 @@
 #include "my.h"
 
 static int      checkevent(sfRenderWindow *window,
-			   t_player *p)
+			   t_player *p, t_map *m)
 {
+  sfEvent	event;
+
   if (sfKeyboard_isKeyPressed(sfKeyEscape))
     sfRenderWindow_close(window);
   if (sfKeyboard_isKeyPressed(sfKeyZ) && p->distu > 10.5 / 100.0 * CASELEN)
@@ -29,6 +31,9 @@ static int      checkevent(sfRenderWindow *window,
     p->angle += 5;
   if (sfKeyboard_isKeyPressed(sfKeyE))
     p->angle -= 5;
+  if (sfRenderWindow_pollEvent(window, &event))
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyC)
+      (m->color ? (m->color = 0) : (m->color = 1));
   return (1);
 }
 
@@ -49,10 +54,11 @@ static int	draw_this(t_map *m, t_player *p, t_pixelbuff *buff)
   return (1);
 }
 
-static void	init_player(t_player *p)
+static void	init_player(t_player *p, t_map *m)
 {
   p->angle = 0;
   p->fov = FOV;
+  m->color = 0;
 }
 
 int		play(t_map *m, t_player *p)
@@ -64,12 +70,12 @@ int		play(t_map *m, t_player *p)
   window = window_create("Wolf", WIDTH, HEIGHT);
   image = t_image_create(WIDTH, HEIGHT);
   buff = pixelbuff_create(WIDTH, HEIGHT);
-  init_player(p);
+  init_player(p, m);
   draw_this(m, p, buff);
   sfTexture_updateFromPixels(image.tex, buff->pixels, WIDTH, HEIGHT, 0, 0);
   while (sfRenderWindow_isOpen(window))
     {
-      if (checkevent(window, p))
+      if (checkevent(window, p, m))
 	{
 	  draw_this(m, p, buff);
 	  sfTexture_updateFromPixels(image.tex, buff->pixels, WIDTH, HEIGHT, 0, 0);
