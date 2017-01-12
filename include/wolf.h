@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:30:30 2016 Cédric Thomas
-** Last update Mon Jan  2 17:13:10 2017 Cédric Thomas
+** Last update Thu Jan 12 14:28:31 2017 
 */
 #ifndef WOLF_H_
 # define WOLF_H_
@@ -51,10 +51,6 @@ typedef struct          s_map
   int			color;
 }                       t_map;
 
-/*
-**0 if hori 1 if verti
-*/
-
 typedef struct		s_cast
 {
   float			height;
@@ -66,7 +62,6 @@ typedef struct		s_cast
   sfVector2i		mcasev;
   int			impact;
 }			t_cast;
-
 
 /*
 **misc.c

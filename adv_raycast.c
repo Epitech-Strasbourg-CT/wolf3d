@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:58:00 2016 Cédric Thomas
-** Last update Mon Jan  2 16:45:47 2017 Cédric Thomas
+** Last update Thu Jan 12 14:27:43 2017 
 */
 #include <SFML/Graphics.h>
 #include <math.h>
@@ -26,7 +26,8 @@ static t_cast	init_cast()
   return (my_cast);
 }
 
-static void	get_hori(sfVector2f player, t_map *m, float direction, t_cast *my_cast)
+static void	get_hori(sfVector2f player, t_map *m,
+			 float direction, t_cast *my_cast)
 {
   sfVector2f	current_h;
   sfVector2f	step_h;
@@ -55,7 +56,8 @@ static void	get_hori(sfVector2f player, t_map *m, float direction, t_cast *my_ca
   my_cast->disth = sqrt(current_h.x * current_h.x + current_h.y * current_h.y);
 }
 
-static void	get_vert(sfVector2f player, t_map *m, float direction, t_cast *my_cast)
+static void	get_vert(sfVector2f player, t_map *m,
+			 float direction, t_cast *my_cast)
 {
   sfVector2f	current_v;
   sfVector2f	step_v;
@@ -108,6 +110,6 @@ t_cast		adv_raycast(t_player p, t_map m, float angle)
   if (my_cast.dist == my_cast.distv && (my_cast.mcase.x || my_cast.mcase.y))
     my_cast.mcase = my_cast.mcasev;
   else
-    my_cast.mcase = my_cast.mcaseh;    
+    my_cast.mcase = my_cast.mcaseh;
   return (my_cast);
 }

@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Fri Dec 23 10:40:47 2016 Cédric Thomas
-** Last update Mon Jan  2 17:19:45 2017 Cédric Thomas
+** Last update Thu Jan 12 14:29:26 2017 
 */
 #include <math.h>
 #include <SFML/Graphics.h>
@@ -35,8 +35,8 @@ int		intersect(int index, t_map *m, t_player *p)
   next = adv_raycast(*p, *m, ((index + 1) * distfov) - p->fov / 2 + p->angle);
   if (prev.impact != act.impact || prev.impact != act.impact)
     return (1);
-  if (prev.dist - act.dist > act.dist * 10 / 100 && !on_wall(act, prev)
-      || next.dist - act.dist > act.dist * 10 / 100 && !on_wall(act, next))
+  if ((prev.dist - act.dist > act.dist * 10 / 100 && !on_wall(act, prev))
+      || (next.dist - act.dist > act.dist * 10 / 100 && !on_wall(act, next)))
     return (1);
   return (0);
 }
@@ -78,7 +78,8 @@ void            draw_wall(t_map *m, t_player *p, t_pixelbuff *buff)
   while (++k <= WIDTH)
     {
       info = adv_raycast(*p, *m, (k * distfov) - p->fov / 2 + p->angle);
-      info.height = info.dist / CASELEN * cosd((-1 * p->fov / 2) + k * distfov);
+      info.height = info.dist /
+	CASELEN * cosd((-1 * p->fov / 2) + k * distfov);
       info.height = (info.height < 1 ? HEIGHT : HEIGHT / info.height);
       color = getcolor(info, m, k, p);
       draw_col(buff, myvector2i(WIDTH - k,
