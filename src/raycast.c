@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Dec 13 09:58:00 2016 Cédric Thomas
-** Last update Mon Jan  2 08:35:30 2017 Cédric Thomas
+** Last update Thu Jan 12 15:59:38 2017 Cédric Thomas
 */
 #include <SFML/Graphics.h>
 #include <math.h>
